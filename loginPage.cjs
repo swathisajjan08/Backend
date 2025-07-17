@@ -24,7 +24,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/loginpage", (req, res) => {
-  const { email, password } = req.body;
+  setTimeout(() => {
+    const { email, password } = req.body;
 
   db.query("SELECT * FROM users WHERE email = ?", [email], (error, results) => {
     if (error) {
@@ -43,6 +44,8 @@ app.post("/loginpage", (req, res) => {
 
     res.json({ message: "Login successful", user });
   });
+  },2000 );
+  
 });
 
 app.get("/plantid", (req, res) => {
