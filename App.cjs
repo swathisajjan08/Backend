@@ -15,8 +15,7 @@ app.get("/", (req, res) => {
 
 app.post("/loginpage", (req, res) => {
   const { email, password } = req.body;
-  setTimeout(() => {
-    loginPromise(email)
+  loginPromise(email)
     .then((results) => {
       if (results.length === 0) {
         return res.status(401).json({ error: "User not found" });
@@ -34,14 +33,11 @@ app.post("/loginpage", (req, res) => {
       console.log(error);
       return res.status(500).json({ error: "Internal server error" });
     });
-  }, 2000);
-  
 });
 
 app.get("/plantid", (req, res) => {
   const id = req.query.id;
-  setTimeout(() => {
-     plantPromise(id)
+  plantPromise(id)
     .then((results) => {
       if (results.length === 0) {
         res.status(404).send("plant not found");
@@ -53,8 +49,6 @@ app.get("/plantid", (req, res) => {
       console.log(error);
       res.status(500).send("error");
     });
-  }, 2000);
- 
 });
 
 app.listen(4000);

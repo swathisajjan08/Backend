@@ -6,18 +6,20 @@ const configj = JSON.parse(config);
 
 function loginPromise(email) {
   return new Promise((resolve, reject) => {
-    return mysql.createConnection(configj).then((connection) => {
-      return connection
-        .query("SELECT * FROM users WHERE email = ?", [email])
-        .then(([rows]) => {
-          connection.end();
-          resolve(rows);
-        })
-        .catch((error) => {
-          connection.end();
-          reject(error);
-        });
-    });
+    setTimeout(() => {
+      return mysql.createConnection(configj).then((connection) => {
+        return connection
+          .query("SELECT * FROM users WHERE email = ?", [email])
+          .then(([rows]) => {
+            connection.end();
+            resolve(rows);
+          })
+          .catch((error) => {
+            connection.end();
+            reject(error);
+          });
+      });
+    }, 2000);
   });
 }
 
